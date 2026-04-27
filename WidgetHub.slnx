@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="WidgetHub/WidgetHub.csproj" />
+  <Project Path="WidgetHub.Core/WidgetHub.Core.csproj" />
+  <Project Path="WidgetHub/WidgetHub.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
 </Solution>

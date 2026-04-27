@@ -72,4 +72,19 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Components\Grocery\" />
+      <Folder Include="Components\Health\" />
+      <Folder Include="Components\Todos\" />
+      <Folder Include="Components\Pages\Health\" />
+      <Folder Include="Components\Pages\Grocery\" />
+      <Folder Include="Components\Pages\Todos\" />
+      <Folder Include="Data\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WidgetHub.Core\WidgetHub.Core.csproj" />
+    </ItemGroup>
+
 </Project>
