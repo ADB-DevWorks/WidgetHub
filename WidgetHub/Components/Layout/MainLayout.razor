@@ -1,3 +1,30 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Nav
 
-@Body
+<div class="layout-container">
+    @*Only visable if not on home page*@
+    @if (!IsHomePage)
+    {
+        <div class="top-bar">
+            <button class="exit-button" @onclick="ExitToHome">Exit App</button>
+        </div>
+    }
+
+    @*Empty container for app pages*@
+    <div class="empty-app-content">
+        @Body
+    </div>
+
+</div>
+
+@code 
+{
+    // Determins if current page is home page
+    private bool IsHomePage => Nav.Uri.EndsWith("/") || Nav.Uri.EndsWith("/home");
+
+    // Returns to home page
+    private void ExitToHome()
+    {
+        Nav.NavigateTo("/");
+    }
+}

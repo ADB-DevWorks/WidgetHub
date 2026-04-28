@@ -1,5 +1,21 @@
-﻿@page "/"
+﻿@inject NavigationManager Nav
 
-<h1>Hello, world!</h1>
+@page "/"
 
-Welcome to your new app.
+<h1>Welcome to your Widget Hub</h1>
+
+<p>Select an app to use</p>
+
+<div class="home-container">
+    <button class="grocery-app-link" @onclick="GroceryLink")">Grocery App</button>
+    <button class="health-app-link" @onclick="HealthLink">Health App</button>
+    <button class="todo-app-link" @onclick="TodoLink">Todo App</button>
+
+</div>
+
+@code 
+{
+    private void GroceryLink() => Nav.NavigateTo("/groceryHome");
+    private void HealthLink() => Nav.NavigateTo("/healthHome");
+    private void TodoLink() => Nav.NavigateTo("/todoHome");
+}
