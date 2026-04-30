@@ -1,8 +1,25 @@
 ﻿@page "/health/login"
+@inject NavigationManager Nav
 
 
 
-<h3>HealthLogin</h3>
+<h3>Who's health are we checking today?</h3>
+
+<div class="user-list">
+    @foreach (var user in users)
+    {
+        <div class="user-row">
+            <span>@user.Name</span>
+            <button @onclick="() => SelectUser(user.Id)">Select</button>
+            <button @onclick="() => RemoveUser(user.Id)">Remove</button>
+        </div>
+    }
+</div>
+
+<div class="add-user">
+    <input @bind="newUserName" placeholder="Enter a new user name"/>
+    <button @onclick="AddUser">Add User</button>
+</div>
 
 
 
@@ -12,8 +29,15 @@
     private List<HealthUser> users = new();
     private string newUserName = string.Empty;
 
+    private void SelectUser(int id)
+    {
+        Nav.NavigateTo($"/health/dashboard/{id}");
+    }
+
     private void AddUser()
     {
+        if (string.IsNullOrWhiteSpace(newUserName)) return;
+
         // Adds a new user to the list and increments the database id# by 1
         users.Add(new HealthUser { Id = users.Count + 1, Name = newUserName });
         newUserName = string.Empty; // Clears name after assigning to list

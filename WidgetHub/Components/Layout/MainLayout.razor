@@ -20,7 +20,7 @@
 @code 
 {
     // Determins if current page is home page
-    private bool IsHomePage => Nav.Uri.EndsWith("/") || Nav.Uri.EndsWith("/home");
+    private bool IsHomePage => Nav.Uri.EndsWith("/");
 
     // Returns to home page
     private void ExitToHome()
