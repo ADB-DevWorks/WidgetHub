@@ -1,0 +1,27 @@
+﻿@page "/health/login"
+
+
+
+<h3>HealthLogin</h3>
+
+
+
+
+@code {
+
+    private List<HealthUser> users = new();
+    private string newUserName = string.Empty;
+
+    private void AddUser()
+    {
+        // Adds a new user to the list and increments the database id# by 1
+        users.Add(new HealthUser { Id = users.Count + 1, Name = newUserName });
+        newUserName = string.Empty; // Clears name after assigning to list
+    }
+
+    private void RemoveUser(int id)
+    {
+        users.RemoveAll(user => user.Id == id);
+    }
+
+}
