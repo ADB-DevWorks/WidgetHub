@@ -27,11 +27,11 @@
         currentUser = FakeHealthUserStore.Users.FirstOrDefault(u => u.Id == Id);
     }
 
-    public void TakeReading() => Nav.NavigateTo("health/take-reading");
-    public void ReviewReading() => Nav.NavigateTo("health/review-readings");
-    public void PrescriptionsLink() => Nav.NavigateTo("health/prescriptions");
-    public void ViewNotes() => Nav.NavigateTo("health/notes");
-    public void ReturnToLogin() => Nav.NavigateTo("health/login");
+    public void TakeReading() => Nav.NavigateTo("/health/take-reading");
+    public void ReviewReading() => Nav.NavigateTo("/health/review-readings");
+    public void PrescriptionsLink() => Nav.NavigateTo("/health/prescriptions");
+    public void ViewNotes() => Nav.NavigateTo("/health/notes");
+    public void ReturnToLogin() => Nav.NavigateTo("/health/login");
 
 
 }
