@@ -1,14 +1,37 @@
 ﻿@page "/health/dashboard/{Id:int}"
+@inject NavigationManager Nav
 
-<h3>Dashboard</h3>
+<h3>Welcome @currentUser?.Name ! What would you like to do today?</h3>
 
-<h4>Welcome </h4>
+<div>
+    <button class="take-reading" @onclick="TakeReading">Take Reading</button>
+    <button class="review" @onclick="ReviewReading" >Review</button>
+    <button class="prescriptions" @onclick="PrescriptionsLink">Manage prescriptions</button>
+    <button class="note" @onclick="ViewNotes">Veiw Notes</button>
+    <button class="login" @onclick="ReturnToLogin">Login</button>
+</div>
+
+
 
 
 
 @code {
 
-    [Parameter]
-    public int Id { get; set; }
+    [Parameter] public int Id { get; set; }
+
+    private HealthUser? currentUser;
+
+    //Finds the user infromation at load time by matching Id passed through uri
+    protected override void OnInitialized()
+    {
+        currentUser = FakeHealthUserStore.Users.FirstOrDefault(u => u.Id == Id);
+    }
+
+    public void TakeReading() => Nav.NavigateTo("health/take-reading");
+    public void ReviewReading() => Nav.NavigateTo("health/review-readings");
+    public void PrescriptionsLink() => Nav.NavigateTo("health/prescriptions");
+    public void ViewNotes() => Nav.NavigateTo("health/notes");
+    public void ReturnToLogin() => Nav.NavigateTo("health/login");
+
 
 }

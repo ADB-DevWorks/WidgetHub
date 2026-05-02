@@ -29,6 +29,7 @@
     private List<HealthUser> users = new();
     private string newUserName = string.Empty;
 
+
     private void SelectUser(int id)
     {
         Nav.NavigateTo($"/health/dashboard/{id}");
@@ -40,6 +41,7 @@
 
         // Adds a new user to the list and increments the database id# by 1
         users.Add(new HealthUser { Id = users.Count + 1, Name = newUserName });
+        FakeHealthUserStore.Users = users;
         newUserName = string.Empty; // Clears name after assigning to list
     }
 
