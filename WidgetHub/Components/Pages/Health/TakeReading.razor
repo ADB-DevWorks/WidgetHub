@@ -2,8 +2,35 @@
 
 <h3>Enter your health readings below</h3>
 
-<input type="radio" />
+
+@*TODO: Fix mode select will not load page*@
+<div class="mode-select">
+    <p>Would you like to take an signle reading or an average</p>
+    <label>
+        Single
+        <InputRadioGroup Value="mode">
+            <label>
+                Single
+                <input type="radio" value="single" />
+            </label>
+            <label>
+                Average
+                <input type="radio" value="average" />
+            </label>
+        </InputRadioGroup>
+    </label>
+    <label>
+        Average
+        <input type="radio" value="averageMode"/>
+    </label>
+</div>
 
 @code {
 
+    private string mode;
+    private string singleMode = "single";
+    private void SingleMode()
+        {
+            
+        }
 }
