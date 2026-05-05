@@ -2,35 +2,80 @@
 
 <h3>Enter your health readings below</h3>
 
+@*TODO: Make only one radio to be selected at a time
+    Page is not loading form after selecting mode,
+    Add functionality to save readings and calculate average
+    Still need to create database for results.
+*@
 
-@*TODO: Fix mode select will not load page*@
 <div class="mode-select">
-    <p>Would you like to take an signle reading or an average</p>
-    <label>
-        Single
-        <InputRadioGroup Value="mode">
-            <label>
-                Single
-                <input type="radio" value="single" />
-            </label>
-            <label>
-                Average
-                <input type="radio" value="average" />
-            </label>
-        </InputRadioGroup>
-    </label>
-    <label>
-        Average
-        <input type="radio" value="averageMode"/>
-    </label>
+    <p>Would you like to take a single reading or an average?</p>
+    <InputRadioGroup @bind-Value="mode">
+        <label>
+            <input type="radio" value="single" />
+            Single
+        </label>
+        <label>
+            <input type="radio" value="average" />
+            Average
+        </label>
+    </InputRadioGroup>
 </div>
 
-@code {
+@if (!string.IsNullOrEmpty(mode))
+{
+    <div class="record-results">
+        <form>
+            <div class="form-group">
+                <label for="systolic">Systolic Pressure</label>
+                <input type="number" class="form-control" id="systolic" placeholder="Enter systolic pressure">
+            </div>
+            <div class="form-group">
+                <label for="diastolic">Diastolic Pressure</label>
+                <input type="number" class="form-control" id="diastolic" placeholder="Enter diastolic pressure">
+            </div>
+            <div class="form-group">
+                <label for="heartRate">Heart Rate</label>
+                <input type="number" class="form-control" id="heartRate" placeholder="Enter heart rate">
+            </div>
+            <div class="form-group">
+                <label for="oxygen">Oxygen Level</label>
+                <input type="number" class="form-control" id="oxygen" placeholder="Enter oxygen level">
+            </div>
 
-    private string mode;
-    private string singleMode = "single";
-    private void SingleMode()
+            @if (mode == "single")
+            {
+                <button type="button" class="btn btn-primary" @onclick="SaveReading">Save Reading</button>
+            }
+            else if (mode == "average")
+            {
+                <button type="button" class="btn btn-primary" @onclick="SaveReading">Add Reading</button>
+                <button type="button" class="btn btn-success" @onclick="CompleteAverage">Complete</button>
+            }
+        </form>
+    </div>
+}
+
+@code {
+    private string mode = string.Empty;
+
+    private void SaveReading()
+    {
+        if (mode == "single")
         {
-            
+            // Save single reading and reset form
+            Console.WriteLine("Single reading saved");
         }
+        else if (mode == "average")
+        {
+            // Add reading to average list
+            Console.WriteLine("Reading added to average");
+        }
+    }
+
+    private void CompleteAverage()
+    {
+        // Save average readings and finalize
+        Console.WriteLine("Average readings completed");
+    }
 }
