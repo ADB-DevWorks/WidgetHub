@@ -12,11 +12,11 @@
     <p>Would you like to take a single reading or an average?</p>
     <InputRadioGroup @bind-Value="mode">
         <label>
-            <input type="radio" value="single" />
+            <InputRadio value="single" />
             Single
         </label>
         <label>
-            <input type="radio" value="average" />
+            <InputRadio value="average" />
             Average
         </label>
     </InputRadioGroup>
@@ -58,6 +58,15 @@
 
 @code {
     private string mode = string.Empty;
+
+    private void single()
+    {
+        mode = "single";
+    }
+    private void average()
+    {
+        mode = "average";
+    }
 
     private void SaveReading()
     {
